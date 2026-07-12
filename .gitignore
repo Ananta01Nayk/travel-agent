@@ -53,3 +53,7 @@ dist/
 # Git
 # ===============================
 .git/
+# Raw scraped data
+data/raw/
+data/chunks/
+data/processed/
