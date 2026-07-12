@@ -1,0 +1,55 @@
+# ===============================
+# Python
+# ===============================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual Environments
+travel-agent/
+venv/
+.venv/
+env/
+
+# Environment Variables
+.env
+
+# Pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# VS Code
+.vscode/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# ===============================
+# React
+# ===============================
+frontend/node_modules/
+frontend/dist/
+
+# ===============================
+# Build Files
+# ===============================
+build/
+dist/
+
+# ===============================
+# Logs
+# ===============================
+*.log
+
+# ===============================
+# Python cache
+# ===============================
+*.sqlite-journal
+
+# ===============================
+# Git
+# ===============================
+.git/
