@@ -1,47 +1,65 @@
-import Header from "./components/Header";
 import AgentWindow from "./components/AgentWindow";
 import RetrievalSidebar from "./components/RetrievalSidebar";
 import useChat from "./hooks/useChat";
 
-export default function App() {
+import heroBg from "./assets/hero-bg.png";
 
+export default function App() {
   const {
     messages,
     loading,
     sendMessage,
-    sources
+    sources,
   } = useChat();
 
   return (
+    <div className="relative w-screen h-screen overflow-hidden">
 
-    <div className="bg-slate-100 h-screen overflow-hidden">
+      {/* Background */}
+      <img
+        src={heroBg}
+        alt="Background"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
 
-      <Header />
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/20 backdrop-blur-[1px]" />
 
-      <div className="flex h-[calc(100vh-90px)] overflow-hidden p-6 gap-6">
+      {/* Main Content */}
+      <div className="relative z-10 h-full px-8 py-8">
 
-        <div className="flex-1 h-full overflow-hidden">
-
+        <div
+         className={`
+          h-full
+          max-w-[1650px]
+          mx-auto
+          grid
+          ${sources && sources.length > 0
+              ? "grid-cols-[1fr_390px]"
+              : "grid-cols-1"}
+          gap-8
+          transition-all
+          duration-300
+        `}
+        >
+          {/* Chat */}
           <AgentWindow
             messages={messages}
             loading={loading}
             sendMessage={sendMessage}
           />
 
-        </div>
-
-        <div className="w-[360px] h-full flex-shrink-0">
-
+          {/* AI Recommendations */}
+          {sources && sources.length > 0 && (
           <RetrievalSidebar
             sources={sources}
           />
+            )}
 
         </div>
 
       </div>
 
     </div>
-
   );
-
 }

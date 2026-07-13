@@ -1,59 +1,72 @@
-# ===============================
+# =========================
 # Python
-# ===============================
+# =========================
 __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
+*.pyc
 
 # Virtual Environments
-travel-agent/
 venv/
 .venv/
 env/
+travel-agent/
 
 # Environment Variables
 .env
 
-# Pytest
+# =========================
+# React
+# =========================
+frontend/node_modules/
+frontend/dist/
+
+# Build Files
+build/
+dist/
+
+# =========================
+# Testing
+# =========================
 .pytest_cache/
 .coverage
 htmlcov/
 
-# VS Code
+# =========================
+# IDE
+# =========================
 .vscode/
 
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# Database
+# =========================
+*.sqlite-journal
+
+# =========================
 # OS Files
+# =========================
 .DS_Store
 Thumbs.db
 
-# ===============================
-# React
-# ===============================
-frontend/node_modules/
-frontend/dist/
-
-# ===============================
-# Build Files
-# ===============================
-build/
-dist/
-
-# ===============================
-# Logs
-# ===============================
-*.log
-
-# ===============================
-# Python cache
-# ===============================
-*.sqlite-journal
-
-# ===============================
-# Git
-# ===============================
-.git/
-# Raw scraped data
+# =========================
+# Data (optional)
+# =========================
 data/raw/
 data/chunks/
 data/processed/
+# Chroma Vector Database
+chroma_db/
+# Python virtual environment
+venv/
+.venv/
+travel-agent/
+
+# Python cache
+__pycache__/
+*.pyc

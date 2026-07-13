@@ -1,38 +1,35 @@
-import { useEffect, useRef } from "react";
 import ChatMessage from "./ChatMessage";
+import TypingIndicator from "./TypingIndicator";
 
-export default function ChatArea({ messages }) {
-
-  const bottomRef = useRef(null);
-
-  useEffect(() => {
-
-    bottomRef.current?.scrollIntoView({
-      behavior: "smooth"
-    });
-
-  }, [messages]);
-
+export default function ChatArea({
+  messages,
+  loading,
+}) {
   return (
+    <div
+      className="
+        h-full
+        overflow-y-auto
+        pr-4
+        pt-2
+        pb-2
+      "
+    >
+      <div
+        className="
+          max-w-[760px]
+          space-y-8
+        "
+      >
+        {messages.map((message, index) => (
+          <ChatMessage
+            key={index}
+            message={message}
+          />
+        ))}
 
-    <div className="h-full overflow-y-auto px-8 py-8">
-
-      {messages.map((msg, index) => (
-
-        <ChatMessage
-
-          key={index}
-          role={msg.role}
-          content={msg.content}
-
-        />
-
-      ))}
-
-      <div ref={bottomRef}></div>
-
+        {loading && <TypingIndicator />}
+      </div>
     </div>
-
   );
-
 }

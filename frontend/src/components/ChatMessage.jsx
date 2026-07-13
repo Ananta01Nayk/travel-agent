@@ -1,49 +1,67 @@
-import { Bot, User } from "lucide-react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import robot from "../assets/robot.png";
 
-export default function ChatMessage({ role, content }) {
-  const isUser = role === "user";
+export default function ChatMessage({ message }) {
+  const isUser = message.role === "user";
 
   return (
     <div
-      className={`flex mb-6 ${
+      className={`flex ${
         isUser ? "justify-end" : "justify-start"
       }`}
     >
+      {!isUser && (
+        <img
+          src={robot}
+          alt=""
+          className="
+            w-10
+            h-10
+            rounded-full
+            bg-white
+            p-1
+            mr-3
+            mt-1
+            shadow-md
+            flex-shrink-0
+          "
+        />
+      )}
+
       <div
-        className={`flex gap-3 max-w-[75%] ${
-          isUser ? "flex-row-reverse" : ""
-        }`}
-      >
-        {/* Avatar */}
-
-        <div
-          className={`w-11 h-11 rounded-full flex items-center justify-center shadow-md
+        className={`
+          max-w-[580px]
+          rounded-3xl
+          px-6
+          py-4
+          shadow-lg
           ${
             isUser
-              ? "bg-blue-600 text-white"
-              : "bg-white border"
-          }`}
-        >
-          {isUser ? <User size={20} /> : <Bot size={20} />}
-        </div>
-
-        {/* Bubble */}
-
-        <div
-          className={`rounded-3xl px-5 py-4 shadow-md
-          ${
-            isUser
-              ? "bg-blue-600 text-white"
+              ? "bg-blue-600"
               : "bg-white text-gray-800"
-          }`}
-        >
-          <p className="leading-7 whitespace-pre-wrap">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                {content}
-            </ReactMarkdown>
+          }
+        `}
+      >
+        {!isUser && (
+          <p className="text-slate-500 text-[11px] font-medium mb-2">
+            Bharti
           </p>
+        )}
+
+        <p className="text-[16px] leading-7 whitespace-pre-wrap">
+          {message.content}
+        </p>
+
+        <div
+          className={`mt-3 text-[11px] ${
+            isUser
+              ? "text-blue-100"
+              : "text-gray-400"
+          } text-right`}
+        >
+          {new Date().toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          })}
         </div>
       </div>
     </div>
