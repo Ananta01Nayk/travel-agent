@@ -14,10 +14,10 @@ export default function AgentWindow({
         relative
         h-full
         rounded-[32px]
-        bg-white/10
-        backdrop-blur-xl
-        border border-white/20
-        shadow-[0_25px_70px_rgba(0,0,0,.35)]
+        bg-white/[0.04]
+        backdrop-blur-2xl
+        border border-white/10
+        shadow-[0_20px_60px_rgba(0,0,0,.30)]
         overflow-hidden
         flex
         flex-col
@@ -27,19 +27,19 @@ export default function AgentWindow({
 
       <div
         className="
-          h-[70px]
+          h-[68px]
           px-7
           flex
           items-center
           justify-between
           border-b
           border-white/10
-          bg-white/5
+          bg-white/[0.03]
         "
       >
         <div className="flex items-center gap-4">
 
-          <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-md">
+          <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center shadow">
             <img
               src={robot}
               alt="Bharti"
@@ -72,11 +72,12 @@ export default function AgentWindow({
             w-10
             h-10
             rounded-xl
-            bg-white/10
-            hover:bg-white/20
+            bg-white/5
+            hover:bg-white/10
             text-white
             text-2xl
-            transition
+            transition-all
+            duration-200
           "
         >
           ×
