@@ -1,4 +1,5 @@
 import robot from "../assets/robot.png";
+import ReactMarkdown from "react-markdown";
 
 export default function ChatMessage({ message }) {
   const isUser = message.role === "user";
@@ -47,9 +48,9 @@ export default function ChatMessage({ message }) {
           </p>
         )}
 
-        <p className="text-[16px] leading-7 whitespace-pre-wrap">
-          {message.content}
-        </p>
+        <div className="prose prose-sm max-w-none text-[16px] leading-7">
+        <ReactMarkdown>{message.content}</ReactMarkdown>
+      </div>
 
         <div
           className={`mt-3 text-[11px] ${

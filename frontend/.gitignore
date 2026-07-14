@@ -68,3 +68,11 @@ dist-ssr/
 # ==========================================
 
 *.local
+
+# Development and testing files
+check_package.py
+check_scrape.py
+test.py
+test_prompt.py
+test_rag.py
+test_retriever.py
