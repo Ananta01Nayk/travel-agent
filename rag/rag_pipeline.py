@@ -1,12 +1,12 @@
 from vectorstore.chroma_retriever import ChromaRetriever
-from rag.generator import OllamaGenerator
+from rag.generator import DeepSeekGenerator
 
 
 class TravelRAG:
 
     def __init__(self):
         self.retriever = ChromaRetriever()
-        self.generator = OllamaGenerator()
+        self.generator = DeepSeekGenerator()
 
         # Messages that should NOT trigger package retrieval
         self.greetings = {

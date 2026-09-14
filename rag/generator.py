@@ -1,16 +1,32 @@
-from ollama import chat
+import os
 
+from openai import OpenAI
 from rag.prompt import build_prompt
 
 
-class OllamaGenerator:
+class DeepSeekGenerator:
+
+    def __init__(self):
+        api_key = os.getenv("DEEPSEEK_API_KEY")
+
+        if not api_key:
+            raise ValueError("DEEPSEEK_API_KEY is not set")
+
+        self.client = OpenAI(
+            api_key=api_key,
+            base_url="https://api.deepseek.com"
+        )
+
+        self.model = os.getenv(
+            "DEEPSEEK_MODEL",
+            "deepseek-v4-flash"
+        )
 
     def generate(self, question: str, packages: list):
 
         documents = []
 
         for package in packages:
-
             documents.append(
                 {
                     "title": package.get("title", ""),
@@ -25,14 +41,17 @@ class OllamaGenerator:
 
         prompt = build_prompt(question, documents)
 
-        response = chat(
-            model="phi3:latest",
+        response = self.client.chat.completions.create(
+            model=self.model,
             messages=[
                 {
                     "role": "user",
                     "content": prompt,
                 }
             ],
+            thinking={
+                "type": "disabled"
+            },
         )
 
-        return response["message"]["content"]
+        return response.choices[0].message.content
