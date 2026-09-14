@@ -1,9 +1,24 @@
-from ollama import chat
+import os
+
+from dotenv import load_dotenv
+from google import genai
 
 from rag.prompt import build_prompt
 
+# Load environment variables
+load_dotenv()
 
-class OllamaGenerator:
+api_key = os.getenv("GOOGLE_API_KEY")
+
+if not api_key:
+    raise ValueError(
+        "GOOGLE_API_KEY not found. Please add it to your .env file."
+    )
+
+client = genai.Client(api_key=api_key)
+
+
+class GeminiGenerator:
 
     def generate(self, question: str, packages: list):
 
@@ -25,14 +40,9 @@ class OllamaGenerator:
 
         prompt = build_prompt(question, documents)
 
-        response = chat(
-            model="phi3:latest",
-            messages=[
-                {
-                    "role": "user",
-                    "content": prompt,
-                }
-            ],
+        response = client.models.generate_content(
+            model="gemini-2.5-pro",
+            contents=prompt,
         )
 
-        return response["message"]["content"]
+        return response.text
