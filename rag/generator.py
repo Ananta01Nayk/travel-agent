@@ -45,13 +45,14 @@ class DeepSeekGenerator:
             model=self.model,
             messages=[
                 {
+                    "role": "system",
+                    "content": "You are a helpful travel assistant. Answer using the provided travel information.",
+                },
+                {
                     "role": "user",
                     "content": prompt,
                 }
             ],
-            thinking={
-                "type": "disabled"
-            },
         )
 
         return response.choices[0].message.content
